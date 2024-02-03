@@ -1,0 +1,36 @@
+﻿@page
+@model AuthorsBookCatalogue.Pages.Authors.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.Author.Name)</h2>
+
+<div class="authorGrid">
+    <h4 id="authorHeader" style="background-color:lightgray">Author</h4>
+    <div id="authorImage">
+        <img src="@Model.Author.ImageUrl" alt="Author Image" width="200" />
+    </div>
+    <div id="authorInfo">
+        <h4>@Html.DisplayNameFor(model => model.Author.About)</h4>
+        <p>@Html.DisplayFor(model => model.Author.About)</p>
+    </div>
+    <div id="authorBooks">
+        <h4 style="background-color:lightgray" width="100%">Book(s)</h4>
+        <table>
+            @foreach (var book in Model.Author.Books)
+            {
+                <tr>
+                    <td><img src="@book.ImageUrl" width="100" /></td>
+                    <td>@Html.DisplayFor(modelItem => book.Title) <br /> <a asp-page="../Books/Details" asp-route-id="@book.BookId">View Details</a></td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Author?.AuthorId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

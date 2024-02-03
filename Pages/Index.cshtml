@@ -1,0 +1,24 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome To Our Book Store</h1>
+</div>
+
+<div class="mainGrid">
+    <div id="mainAuthor">
+        <p><em>(#1) Best Selling Author</em></p>
+        <img src="@Model.Author.FirstOrDefault().ImageUrl" alt="Best selling author" width="350"/>
+        <h2>@Html.DisplayFor(model => model.Author.FirstOrDefault().Name)</h2>
+        <a asp-page="Authors/Details" asp-route-id="@Model.Author.FirstOrDefault().AuthorId">View Details</a>
+    </div>
+    <div id="mainBook">
+        <p><em>(#1) Best Selling Book</em></p>
+        <img src="@Model.Book.FirstOrDefault().ImageUrl" alt="Best selling book" width="350" />
+        <h2>@Html.DisplayFor(model => model.Book.FirstOrDefault().Title)</h2>
+        <a asp-page="Books/Details" asp-route-id="@Model.Book.FirstOrDefault().BookId">View Details</a>
+    </div>
+</div>

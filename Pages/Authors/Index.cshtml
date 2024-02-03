@@ -1,0 +1,36 @@
+﻿@page
+@model AuthorsBookCatalogue.Pages.Authors.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Authors List</h1>
+
+<p>
+    <a asp-page="Create">Create New</a> | <a asp-page="./AddBookToAuthorModel" asp-route-id="">Add Book To an Author</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Author[0].Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Author) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AuthorId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.AuthorId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.AuthorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
